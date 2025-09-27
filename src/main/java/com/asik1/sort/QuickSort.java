@@ -5,6 +5,10 @@ import com.asik1.metrics.DepthTracker;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.asik1.common.Partition.hoareByValue;
+import static com.asik1.common.Compare.*;
+import static com.asik1.common.ArraysEx.swap;
+
 /**
  * QuickSort (int[]) with:
  *  - randomized pivot
@@ -41,7 +45,7 @@ public final class QuickSort {
             int pIdx = ThreadLocalRandom.current().nextInt(lo, hi + 1);
             int pivot = a[pIdx];
 
-            int mid = hoarePartition(a, lo, hi, pivot, ctr);
+            int mid = hoareByValue(a, lo, hi, pivot, ctr);
 
             // Left partition is [lo..mid], right is [mid+1..hi]
             int leftSize = mid - lo + 1;
@@ -63,19 +67,7 @@ public final class QuickSort {
         }
     }
 
-    /** Hoare partition using a pivot VALUE. Returns final index j so that a[lo..j] <= pivot <= a[j+1..hi]. */
-    private static int hoarePartition(int[] a, int lo, int hi, int pivot, Counters ctr) {
-        int i = lo - 1;
-        int j = hi + 1;
-        while (true) {
-            do { i++; } while (less(a[i], pivot, ctr));
-            do { j--; } while (less(pivot, a[j], ctr));
-            if (i >= j) return j;
-            swap(a, i, j, ctr);
-        }
-    }
-
-    private static void insertion(int[] a, int lo, int hi, Counters ctr) {
+        private static void insertion(int[] a, int lo, int hi, Counters ctr) {
         for (int i = lo + 1; i <= hi; i++) {
             int key = a[i];
             if (ctr != null) ctr.incMoves(); // write to temp register
@@ -88,22 +80,6 @@ public final class QuickSort {
             a[j + 1] = key;
             if (ctr != null) ctr.incMoves();
         }
-    }
+    }}
 
-    /* --- helpers with counting --- */
-    private static boolean less(int x, int y, Counters ctr) {
-        if (ctr != null) ctr.incComparisons();
-        return x < y;
-    }
-    private static boolean greater(int x, int y, Counters ctr) {
-        if (ctr != null) ctr.incComparisons();
-        return x > y;
-    }
-    private static void swap(int[] a, int i, int j, Counters ctr) {
-        if (i == j) return;
-        int t = a[i];
-        a[i] = a[j];
-        a[j] = t;
-        if (ctr != null) ctr.addMoves(3); // three assignments
-    }
-}
+    

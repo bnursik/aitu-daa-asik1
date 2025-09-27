@@ -1,7 +1,12 @@
+/home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/common/Partition.java
 /home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/sort/MergeSort.java
+/home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/common/Shuffle.java
 /home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/sort/QuickSort.java
+/home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/common/Compare.java
 /home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/metrics/DepthTracker.java
 /home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/metrics/Counters.java
+/home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/common/ArraysEx.java
+/home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/common/Guards.java
 /home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/metrics/CsvWriter.java
 /home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/App.java
 /home/nursik/aitu/daa/asik1/algolab/src/main/java/com/asik1/metrics/Metrics.java

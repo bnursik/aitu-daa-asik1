@@ -1,5 +1,7 @@
 package com.asik1.sort;
 
+import com.asik1.common.Compare;
+
 import com.asik1.metrics.Counters;
 import com.asik1.metrics.DepthTracker;
 
@@ -50,7 +52,7 @@ public final class MergeSort {
             sortRec(a, tmp, mid + 1, hi, cutoff, ctr, depth);
 
             // If already ordered, skip merge (optimization)
-            if (lessEq(a[mid], a[mid + 1], ctr)) {
+            if (Compare.lessEq(a[mid], a[mid + 1], ctr)) {
                 return;
             }
             merge(a, tmp, lo, mid, hi, ctr);
@@ -72,7 +74,7 @@ public final class MergeSort {
         int k = lo;      // write ptr into a
 
         while (i <= mid && j <= hi) {
-            if (lessEq(tmp[i], tmp[j], ctr)) {
+            if (Compare.lessEq(tmp[i], tmp[j], ctr)) {
                 a[k++] = tmp[i++];
                 if (ctr != null) ctr.incMoves();
             } else {
@@ -93,7 +95,7 @@ public final class MergeSort {
             int key = a[i];
             if (ctr != null) ctr.incMoves(); // read key into register counted as "move" (write back later)
             int j = i - 1;
-            while (j >= lo && greater(a[j], key, ctr)) {
+            while (j >= lo && Compare.greater(a[j], key, ctr)) {
                 a[j + 1] = a[j];
                 if (ctr != null) ctr.incMoves();
                 j--;
@@ -103,13 +105,5 @@ public final class MergeSort {
         }
     }
 
-    /* ---- comparison helpers with counting ---- */
-    private static boolean lessEq(int x, int y, Counters ctr) {
-        if (ctr != null) ctr.incComparisons();
-        return x <= y;
     }
-    private static boolean greater(int x, int y, Counters ctr) {
-        if (ctr != null) ctr.incComparisons();
-        return x > y;
-    }
-}
+
