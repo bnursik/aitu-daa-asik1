@@ -1,0 +1,2 @@
+algo,n,shape,seed,trial,timeNs,maxDepth,comparisons,moves,arrayAllocs,notes
+mergesort,10000,random,42,1,19350209,10,144406,245209,1,
